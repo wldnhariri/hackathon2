@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        "inter": ['inter']
+                    },
+                    colors: {
+                        "ungu": '#5D50C6',
+                        "pink": '#F85E9F',
+                        "orange": '#FF5722',
+                        "grey": '#191825',
+                        "tbn": '#CAD32C'
+                    },
+                    dropShadow: {
+                        "sm-shadow": [
+                            '0px 856px 240px 0px rgba(0, 0, 0, 0.00)',
+                            '0px 548px 219px 0px rgba(0, 0, 0, 0.01)',
+                            '0px 308px 185px 0px rgba(0, 0, 0, 0.04)',
+                            '0px 137px 137px 0px rgba(0, 0, 0, 0.06)',
+                            '0px 34px 75px 0px rgba(0, 0, 0, 0.07)',
+                            '0px 0px 0px 0px rgba(0, 0, 0, 0.07)'
+                        ],
+                        "lg-shadow": [
+                            '0px 126px 35px 0px rgba(0, 0, 0, 0.00)',
+                            '0px 81px 32px 0px rgba(0, 0, 0, 0.01)',
+                            '0px 45px 27px 0px rgba(0, 0, 0, 0.05)',
+                            '0px 20px 20px 0px rgba(0, 0, 0, 0.09)',
+                            '0px 5px 11px 0px rgba(0, 0, 0, 0.10)',
+                            '0px 0px 0px 0px rgba(0, 0, 0, 0.10)'
+                        ],
+                        "xl-shadow": [
+                            '0px 41px 89px 0px rgba(0, 0, 0, 0.10)',
+                            '0px 0px 0px 0px rgba(0, 0, 0, 0.10)'
+                        ]
+                    }
+                },
+            }
+        }
+    </script>
+
+    <!-- ALpine JS -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="py-9 px-4 fixed top-0 w-full z-10 bg-white shadow-md" x-data="{navOpen : true}">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between">
+                <img src="./public/assets/logotbn.svg" alt="" class="order-1 sm:order-2">
+                <img @click="navOpen = ! navOpen" src="./public/assets/toggle.svg" alt=""
+                    class="lg:hidden  order-2 sm:order-1">
+                <div class="order-2 hidden lg:block">
+                    <ul class="flex gap-16">
+                        <li class="text-grey font-normal text-lg opacity-50">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="text-grey font-normal text-lg opacity-50">
+                            <a href="about.html">Tentang Kami</a>
+                        </li>
+                        <li class="text-grey font-bold text-lg">
+                            <a href="event.html">Event</a>
+                        </li>
+                        <li class="text-grey font-normal text-lg opacity-50">
+                            <a href="program.html">Program</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="order-3 hidden sm:block">
+                    <a href="login.html">
+                        <button class="grow bg-white px-8 py-4 font-bold text-grey rounded-full text-sm">Login</button>
+                    </a>
+                    <button class="grow bg-tbn px-8 py-4 font-bold text-white rounded-full text-sm">Sign Up</button>
+                </div>
+            </div>
+        </div>
+        <div x-show="navOpen" x-data="{open : false}"
+            class="z-50 fixed bottom-0 right-0 left-0 bg-white p-4 border lg:hidden"
+            x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
+            x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
+            <ul class="flex justify-between">
+                <li>
+                    <button class="flex justify-center flex-col items-center gap-1">
+                        <a href="index.html" class="flex justify-center flex-col items-center gap-1">
+                            <ion-icon name="home-outline" class="text-2xl text-grey opacity-50"></ion-icon>
+                            <span class="text-grey opacity-50 text-base font-normal">Home</span>
+                        </a>
+                    </button>
+                </li>
+                <li>
+                    <button class=" flex justify-center flex-col items-center gap-1">
+                        <a href="about.html" class="flex justify-center flex-col items-center gap-1">
+                            <ion-icon name="albums-outline" class="text-2xl text-grey opacity-50"></ion-icon>
+                            <span class="text-grey opacity-50 text-base font-normal">Tentang Kami</span>
+                        </a>
+                    </button>
+                </li>
+                <li>
+                    <button class="flex justify-center flex-col items-center gap-1">
+                        <a href="event.html" class="flex justify-center flex-col items-center gap-1">
+                            <ion-icon name="sparkles-outline" class="text-2xl text-tbn"></ion-icon>
+                            <span class="text-tbn text-base font-bold">Event</span>
+                        </a>
+                    </button>
+                </li>
+                <li>
+                    <button class="flex justify-center flex-col items-center gap-1">
+                        <a href="program.html" class="flex justify-center flex-col items-center gap-1">
+                            <ion-icon name="megaphone-outline" class="text-2xl text-grey opacity-50"></ion-icon>
+                            <span class="text-grey opacity-50 text-base font-normal">Program</span>
+                        </a>
+                    </button>
+                </li>
+                <li>
+                    <button @click="open = !open" class="flex justify-center flex-col items-center gap-1">
+                        <ion-icon name="menu-outline" class="text-2xl text-grey opacity-50"></ion-icon>
+                        <span class="text-grey opacity-50 text-base font-normal">More</span>
+                    </button>
+                </li>
+            </ul>
+            <div x-show="open" class="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-4 w-3/4"
+                x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
+                x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300"
+                x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
+                <a href="login.html">
+                    <button
+                        class="grow bg-white shadow-md px-8 py-4 font-bold text-grey rounded-full text-sm">Login</button>
+                </a>
+                <button class="grow bg-tbn shadow-md px-8 py-4 font-bold text-white rounded-full text-sm">Sign
+                    Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Detail -->
+    <div class="container mx-auto py-16 mt-20">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-1/2">
+                    <img src="./public/assets/event/event1.png" alt="THE FALL GUY Poster"
+                        class="max-w-full h-auto rounded-lg mb-4">
+                    <button
+                        class="bg-tbn text-white font-bold py-2 px-4 rounded w-full lg:w-auto">
+                        Join Sekarang
+                    </button>
+                </div>
+                <div class="lg:w-1/2 lg:pl-4">
+                    <h2 class="text-3xl font-bold mb-2 text-gray-800">Plenary 5: The Future of Education</h2>
+                    <p class="text-gray-700 mb-2">Apakah Anda siap untuk membuat dampak yang berarti dalam hidup orang lain? Kami dari TBN Indonesia sangat senang untuk mengundang Anda agar bergabung dalam acara tahunan kami yang akan datang!</p>
+                    <p class="text-gray-700 mb-1"><strong>Tanggal:</strong> Jum'at, 08 September 2023</p>
+                    <p class="text-gray-700 mb-1"><strong>Waktu:</strong> TBA</p>
+                    <p class="text-gray-700 mb-1"><strong>Tempat:</strong> TBA</p>
+                    <p class="text-gray-700 mt-4">
+                        Apakah Anda siap untuk membantu dampak yang berarti dalam hidup orang
+                        lain? Kami dari TBN Indonesia sangat senang untuk mengundang Anda agar bergabung dalam acara
+                        tahunan kami yang akan datang! Acara ini akan menjadi kesempatan bagi Anda bertemu dengan para
+                        pemerhati sosial untuk saling berbagi ide, dan terlibat langsung dalam upaya kami untuk
+                        memberantas kemiskinan di Indonesia. Kami akan membahas proyek-proyek terbaru kami, merencanakan
+                        langkah-langkah berikutnya dalam perjuangan kami, dan mendengarkan cerita inspiratif dari Guest Star yang merupakan seorang investor terkemuka yang kerap andil dalam memberantas kemiskinan. <br> <br>
+                        Selain itu, acara ini juga akan menjadi waktu yang tepat untuk memperluas jaringan Anda, bertemu dengan individu-individu dari seluruh penjuru Indonesia yang memiliki visi yang sama, dan membangun kolaborasi yang bermanfaat. <br>
+                        Jangan lewatkan kesempatan ini untuk menjadi bagian dari sesuatu yang lebih besar. Bersama-sama, kita dapat menciptakan perubahan yang nyata! <br> <br>
+                        Terima kasih atas perhatian Anda, dan kami harap dapat bertemu dengan Anda dalam acara tersebut. <br> <br>
+                        Salam hangat, <br> <br>
+                        Tim TBN Indonesia
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="p-10 bg-gray-800 text-gray-200">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+                    <div class="mb-5">
+                        <h4 class="text-2xl pb-4">TBN Indonesia</h4>
+                        <p class="text-gray-500">
+                            Indonesia Team Impact Hub <br>
+                            Lippo Thamrin Lt.5 #0503 <br>
+                            Jl. M.H.Thamrin No.20, Menteng <br>
+                            Jakarta Pusat 10350, Indonesia <br><br>
+                            <strong>WhatsApp :</strong> +62823 1000 1908 <br>
+                            <strong>Email :</strong> info@tbnindonesia.org <br>
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <h4 class="pb-4">Connnect With Us</h4>
+                        <ul class="text-gray-500">
+                            <li class="pb-4"><i class="fa fa-chevron-right"></i><a
+                                    href="https://www.instagram.com/tbn.indonesia/" class="hover:text-tbn">Instagram</a>
+                            </li>
+                            <li class="pb-4"><i class="fa fa-chevron-right"></i><a
+                                    href="https://www.youtube.com/channel/UCnal-hHUTJRGKl5N0S79Gbg"
+                                    class="hover:text-tbn">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="mb-5">
+                        <h4 class="pb-4">Connect With Us</h4>
+                        <ul class="text-gray-500">
+                            <li class="pb-4"><i class="fa fa-chevron-right"></i><a
+                                    href="https://api.whatsapp.com/send?phone=+6282310001908&text=Hi,%20Saya%20ingin%20bertanya%20tentang%20informasi%20TBN%20Indonesia"
+                                    class="hover:text-tbn">WhatsApp</a></li>
+                            <li class="pb-4"><i class="fa fa-chevron-right"></i><a href="mailto:info@tbnindonesia.org"
+                                    class="hover:text-tbn">Email</a></li>
+                            <li class="pb-4"><i class="fa fa-chevron-right"></i><a
+                                    href="https://www.linkedin.com/in/tbn-indonesia-210705251/"
+                                    class="hover:text-tbn">Linkedin</a></li>
+                        </ul>
+                    </div>
+                    <div class="mb-5">
+                        <h4 class="pb-4">Our Newsletter</h4>
+                        <p class="text-gray-500 pb-2">Join</p>
+                        <form class="flex flex-row flex-wrap">
+                            <input type="text" class="text-gray-500 w-2/3 p-2 focus:border-tbn" placeholder="...">
+                            <button class="p-2 w-1/3 bg-tbn text-white">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full bg-gray-900 text-gray-500 px-10">
+            <div class="max-w-7xl flex flex-col sm:flex-row py-4 mx-auto justify-center items-center">
+                <div class="text-center">
+                    <div>
+                        Copyright <strong><span>TBN Indonesia</span></strong>. All Rights Reserved
+                    </div>
+                    <div>
+                        2024
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</body>
+
+</html>
